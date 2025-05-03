@@ -32,14 +32,15 @@ app.use(getUserRouter);
 app.use(uploadImagesRouter);
 
 app.all('*', async (req, res) => {
-  throw new NotFoundError();
+  console.log('Route not found', req.path);
+  // throw new NotFoundError();
 });
 
 app.use(errorHandler);
 
 const start = async () => {
   try {
-    await mongoose.connect("mongodb+srv://nadavtalalmagor:uhVcp9R8FFTAZOIW@picshareai.lu9xg.mongodb.net/?retryWrites=true&w=majority&appName=PicshareAi");
+    await mongoose.connect(process.env.MONGO_URI!);
 
     console.log('Connected to MongoDb');
   } catch (err) {
