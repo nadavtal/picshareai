@@ -9,10 +9,11 @@ import { getUserRouter } from './routes/getUser';
 import { errorHandler, NotFoundError } from "@ntatickets/common";
 import cookieSession from "cookie-session";
 import cors from "cors";
+import { config } from "dotenv";
 import { uploadImagesRouter } from "./routes/uploadImages";
 const app = express();
 app.set('trust proxy', true);
-
+config(); // Load environment variables from .env file
 app.use(
   cookieSession({
     signed: false,
