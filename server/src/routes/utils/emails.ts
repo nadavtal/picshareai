@@ -8,25 +8,26 @@ type Mail = {
   attachments?: any[]; // Adjust the type based on your specific attachment structure
 };
 // Create a reusable transporter
-console.log("Creating email transporter...", process.env.PICS_GMAIL_USER, process.env.PICS_GMAIL_PASSWORD);
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  secure: true, // Use secure connection
-  host: "smtp.gmail.com",
-  port: 465, // Secure port
-  auth: {
-    user: process.env.PICS_GMAIL_USER,
-    pass: process.env.PICS_GMAIL_PASSWORD,
-  },
-  // auth: {
-  //   user: process.env.EMAIL_USER,
-  //   pass: process.env.EMAIL_PASS,
-  // },
-  connectionTimeout: 30000,
-});
+// console.log("Creating email transporter...", process.env.PICS_GMAIL_USER, process.env.PICS_GMAIL_PASSWORD);
+
 
 // Function to verify the transporter
 export const verifyEmailTransporter = (): Promise<void> => {
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    secure: true, // Use secure connection
+    host: "smtp.gmail.com",
+    port: 465, // Secure port
+    auth: {
+      user: process.env.PICS_GMAIL_USER,
+      pass: process.env.PICS_GMAIL_PASSWORD,
+    },
+    // auth: {
+    //   user: process.env.EMAIL_USER,
+    //   pass: process.env.EMAIL_PASS,
+    // },
+    connectionTimeout: 30000,
+  });
   return new Promise((resolve, reject) => {
     transporter.verify((error) => {
       if (error) {
