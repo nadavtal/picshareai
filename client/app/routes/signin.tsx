@@ -42,8 +42,8 @@ export default function SignIn() {
   };
 
   return (
-<div className="container">
-    <img src={logo} alt="Logo" className="logo" />
+    <div className="container">
+      <img src={logo} alt="Logo" className="logo" />
       <h1>Sign in</h1>
       <form action={submitAction} className="form">
         <div className="form-group">
@@ -57,6 +57,16 @@ export default function SignIn() {
         <button type="submit" className="button">Sign In</button>
       </form>
       {error && <p className="error-message">{error}</p>}
+      <p className="signup-redirect">
+        Don't have an account?{" "}
+        <button
+          type="button"
+          className="link-button"
+          onClick={() => navigate("/signup")}
+        >
+          Sign up here
+        </button>
+      </p>
     </div>
   );
 }
