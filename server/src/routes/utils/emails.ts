@@ -8,6 +8,7 @@ type Mail = {
   attachments?: any[]; // Adjust the type based on your specific attachment structure
 };
 // Create a reusable transporter
+console.log("Creating email transporter...", process.env.PICS_GMAIL_USER, process.env.PICS_GMAIL_PASSWORD);
 const transporter = nodemailer.createTransport({
   service: "gmail",
   secure: true, // Use secure connection
