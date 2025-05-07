@@ -47,6 +47,21 @@ export const sendMail = ({
   attachments,
 }: Mail): Promise<any> => {
   return new Promise((resolve, reject) => {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      secure: true, // Use secure connection
+      host: "smtp.gmail.com",
+      port: 465, // Secure port
+      auth: {
+        user: process.env.PICS_GMAIL_USER,
+        pass: process.env.PICS_GMAIL_PASSWORD,
+      },
+      // auth: {
+      //   user: process.env.EMAIL_USER,
+      //   pass: process.env.EMAIL_PASS,
+      // },
+      connectionTimeout: 30000,
+    });
     if (!recipients) {
       return reject(new Error("No recipients provided for email sending."));
     }
