@@ -40,10 +40,12 @@ app.all('*', async (req, res) => {
 app.use(errorHandler);
 
 const start = async () => {
+  console.log('Starting up...', process.env.MONGO_URI, process.env.PICS_GMAIL_USER, process.env.PICS_GMAIL_PASSWORD);
   try {
     await mongoose.connect(process.env.MONGO_URI!);
 
     console.log('Connected to MongoDb');
+
   } catch (err) {
     console.error(err);
   }
